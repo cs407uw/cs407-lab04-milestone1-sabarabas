@@ -21,10 +21,13 @@ import org.w3c.dom.Text
 class MainActivity : AppCompatActivity() {
     private val TAG = "MyActivity"
     private var job : Job? = null
+    private var isComplete = true
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+
+        findViewById<TextView>(R.id.progressText).text = getString(R.string.download_progress) + " 0%"
 
         findViewById<Button>(R.id.start).setOnClickListener() {
             startDownload(findViewById<View>(R.id.main))
@@ -44,12 +47,14 @@ class MainActivity : AppCompatActivity() {
             Log.d(TAG, "Download Progress $downloadProgress%")
             withContext(Dispatchers.Main) {
                 findViewById<TextView>(R.id.progressText).text = getString(R.string.download_progress) + " $downloadProgress%"
+                isComplete = false
             }
             delay(1000)
         }
         withContext(Dispatchers.Main) {
             findViewById<Button>(R.id.start).text = getString(R.string.start_button)
         }
+        isComplete = true;
     }
 
     private fun startDownload(view: View) {
@@ -60,7 +65,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun stopDownload(view: View) {
         job?.cancel()
-        findViewById<Button>(R.id.start).text = getString(R.string.start_button)
-        findViewById<TextView>(R.id.progressText).text = getString(R.string.download_cancelled)
+        if(!isComplete){
+            findViewById<Button>(R.id.start).text = getString(R.string.start_button)
+            findViewById<TextView>(R.id.progressText).text = getString(R.string.download_cancelled)
+        }
     }
 }
