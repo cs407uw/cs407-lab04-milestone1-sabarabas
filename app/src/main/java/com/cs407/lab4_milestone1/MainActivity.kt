@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity() {
         }
         withContext(Dispatchers.Main) {
             findViewById<Button>(R.id.start).text = getString(R.string.start_button)
+            findViewById<TextView>(R.id.progressText).text = getString(R.string.download_done)
         }
         isComplete = true;
     }

@@ -5,4 +5,5 @@
     <string name="download">DOWNLOADING...</string>
     <string name="download_progress">Download Progress</string>
     <string name="download_cancelled">Download Cancelled</string>
+    <string name="download_done">Download Complete</string>
 </resources>
