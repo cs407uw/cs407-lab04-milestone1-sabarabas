@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">lab4_milestone1</string>
+    <string name="start_button">START</string>
+    <string name="stop_button">STOP</string>
+    <string name="download">DOWNLOADING...</string>
+    <string name="download_progress">Download Progress</string>
+    <string name="download_cancelled">Download Cancelled</string>
+</resources>
